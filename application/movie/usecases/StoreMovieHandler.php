@@ -30,11 +30,12 @@ class StoreMovieHandler
      */
     public function execute(StoreMovieCommand $command): void
     {
+
         $this->_checkCommand($command);
 
         $movie = $this->_getMovieFromInput($command);
 
-        $this->_recorder->save($movie);
+        $this->_recorder->store($movie);
     }
 
     /**
@@ -48,6 +49,7 @@ class StoreMovieHandler
         $movie->setSummary($command->getSummary());
         $movie->setPoster($command->getPoster());
         $movie->setDuration($command->getDuration());
+        $movie->setTrailer($command->getTrailer());
 
         return $movie;
     }

@@ -30,7 +30,7 @@ class EloquentMovieRecorder extends Model implements MovieRecorder
      * @param Movie $movie
      * @throws RecordException
      */
-    public function store(Movie $movie)
+    public function store(Movie $movie): void
     {
         try {
             $fillableFields = $this->_getFillableFields($movie);
