@@ -2,6 +2,8 @@
 namespace siesta\domain\movie;
 
 
+use siesta\domain\exception\RecordException;
+
 /**
  * Interface MovieRecorder
  * @package siesta\domain\model\movie
@@ -10,7 +12,7 @@ interface MovieRecorder
 {
     /**
      * @param Movie $movie
-     * @return bool
+     * @throws RecordException
      */
-    public function save(Movie $movie);
+    public function store(Movie $movie);
 }

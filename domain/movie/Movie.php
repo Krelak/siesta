@@ -12,6 +12,8 @@ class Movie
     private $_poster;
     /** @var int */
     private $_duration;
+    /** @var string */
+    private $_trailer;
 
     /**
      * @param string $title
@@ -75,5 +77,35 @@ class Movie
     public function getSummary(): string
     {
         return $this->_summary;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTrailer(): string
+    {
+        return $this->_trailer;
+    }
+
+    /**
+     * @param string $trailer
+     */
+    public function setTrailer(string $trailer): void
+    {
+        $this->_trailer = $trailer;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'title' => $this->_title,
+            'poster' => $this->_poster,
+            'trailer' => $this->_trailer,
+            'duration' => $this->_duration,
+            'summary' => $this->_summary,
+        ];
     }
 }
