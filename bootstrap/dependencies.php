@@ -16,8 +16,9 @@ $app->bind(\App\Helpers\FinderVideoService::class, function ($app) {
     $googleClient = new Google_Client();
     $googleClient->setApplicationName(env('GOOGLE_APP_NAME'));
     $googleClient->setDeveloperKey(env("GOOGLE_APP_KEY"));
+    $videoService = new Google_Service_YouTube($googleClient);
 
-    return new \App\Helpers\YoutubeFinderVideoService($googleClient);
+    return new \App\Helpers\YoutubeFinderVideoService($videoService);
 });
 
 /***************************************
