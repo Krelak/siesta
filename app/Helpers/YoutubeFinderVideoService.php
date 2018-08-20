@@ -30,7 +30,7 @@ class YoutubeFinderVideoService implements FinderVideoService
     {
         $firstVideo = $this->_getFirstVideoByText($text);
 
-        return UrlGenerator::getYoutubeUrl($firstVideo->getId()->getVideoId());
+        return $firstVideo->getId()->getVideoId();
     }
 
     /**

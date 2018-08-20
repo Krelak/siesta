@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\App\Helpers;
 
-use App\Helpers\UrlGenerator;
 use App\Helpers\YoutubeFinderVideoService;
 use Google_Service_YouTube;
 use Google_Service_YouTube_Resource_Search;
@@ -46,14 +45,13 @@ class YoutubeFinderVideoServiceTest extends \Tests\TestCase
             ->willReturnOnConsecutiveCalls($response, $response2);
         $result = $this->_finder->findVideoByText('myVideo');
 
-        $expected = UrlGenerator::getYoutubeUrl('myVideoId');
-        $this->assertEquals($expected, $result);
+
+        $this->assertEquals('myVideoId', $result);
 
 
         $result = $this->_finder->findVideoByText('anotherVideo');
 
-        $expected = UrlGenerator::getYoutubeUrl('amotherVideoId');
-        $this->assertEquals($expected, $result);
+        $this->assertEquals('amotherVideoId', $result);
     }
 
     /**
