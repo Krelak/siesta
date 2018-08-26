@@ -9,6 +9,8 @@ class YoutubeFinderVideoService implements FinderVideoService
 
     private const PART_TO_FIND = 'snippet';
     private const QUERY_PARAM = 'q';
+    private const TYPE = 'type';
+    private const ALLOWED_TYPE = 'video';
 
     /** @var Google_Service_YouTube */
     private $_service;
@@ -39,7 +41,7 @@ class YoutubeFinderVideoService implements FinderVideoService
      */
     private function _getFirstVideoByText(string $text): Google_Service_YouTube_SearchResult
     {
-        $videos = $this->_service->search->listSearch(self::PART_TO_FIND, [self::QUERY_PARAM => $text]);
+        $videos = $this->_service->search->listSearch(self::PART_TO_FIND, [self::QUERY_PARAM => $text, self::TYPE => self::ALLOWED_TYPE]);
 
         return current($videos->getItems());
     }
