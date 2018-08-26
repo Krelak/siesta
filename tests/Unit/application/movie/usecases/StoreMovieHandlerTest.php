@@ -23,7 +23,7 @@ class StoreMovieHandlerTest extends \Tests\TestCase
     public function testRepositoryIsCalled()
     {
         $this->_movieRecorder->expects($this->once())
-            ->method('save')
+            ->method('store')
             ->willThrowException(new \Exception('repository is called'));
         try {
             $data = $this->_getValidJson();
@@ -99,7 +99,7 @@ class StoreMovieHandlerTest extends \Tests\TestCase
     public function testMovieIsCorrectlyTransformed()
     {
         $this->_movieRecorder->expects($this->once())
-            ->method('save')
+            ->method('store')
             ->with($this->callback(
                 function (Movie $movie) {
                     return $movie->getDuration() === 90 &&

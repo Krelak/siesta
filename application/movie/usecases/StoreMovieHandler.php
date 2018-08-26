@@ -62,22 +62,26 @@ class StoreMovieHandler
      */
     private function _checkCommand(StoreMovieCommand $command): void
     {
-        $errors = [];
-        if(!\is_int($command->getDuration())){
-            $errors[] = "Incorrect duration:{$command->getDuration()}";
-        }
-        if(empty($command->getSummary())){
-            $errors[] = "Empty summary:{$command->getSummary()}";
-        }
-        if(empty($command->getPoster())) {
-            $errors[] = "Empty poster:{$command->getPoster()}";
-        }
-        if(empty($command->getTitle())) {
-            $errors[] = "Empty title:{$command->getTitle()}";
-        }
+        try {
+            $errors = [];
+            if (!\is_int($command->getDuration())) {
+                $errors[] = "Incorrect duration:{$command->getDuration()}";
+            }
+            if (empty($command->getSummary())) {
+                $errors[] = "Empty summary:{$command->getSummary()}";
+            }
+            if (empty($command->getPoster())) {
+                $errors[] = "Empty poster:{$command->getPoster()}";
+            }
+            if (empty($command->getTitle())) {
+                $errors[] = "Empty title:{$command->getTitle()}";
+            }
 
-        if(!empty($errors)){
-            throw new WrongInputException(json_encode($errors));
+            if (!empty($errors)) {
+                throw new WrongInputException(json_encode($errors));
+            }
+        } catch (\TypeError $e) {
+            throw new WrongInputException('', 0, $e);
         }
 
     }
