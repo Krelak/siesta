@@ -41,7 +41,7 @@ class SitgesWeb2018MovieExtractor implements MovieExtractor
             [$title, $link] = $this->_getTitleFromMovieElement($domMovie);
             $movie = new Movie();
             $movie->setTitle($title);
-            $movie->setTrailer($this->_getTrailer($title));
+            $movie->setTrailerId($this->_getTrailer($title));
             $movie->setDuration($this->_getDuration($link));
             $movie->setPoster($this->_getPosterFromMovieElement($domMovie));
             $movie->setSummary($this->_getSummary($link));

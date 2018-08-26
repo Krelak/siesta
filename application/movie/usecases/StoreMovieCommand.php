@@ -48,7 +48,7 @@ class StoreMovieCommand
      */
     public static function buildFromMovie(\siesta\domain\movie\Movie $movie): StoreMovieCommand
     {
-        return new self($movie->getTitle(), $movie->getSummary(), $movie->getPoster(), $movie->getDuration(), $movie->getTrailer());
+        return new self($movie->getTitle(), $movie->getSummary(), $movie->getPoster(), $movie->getDuration(), $movie->getTrailerId());
     }
 
     /**

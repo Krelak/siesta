@@ -13,7 +13,7 @@ class Movie
     /** @var int */
     private $_duration;
     /** @var string */
-    private $_trailer;
+    private $_trailerId;
 
     /**
      * @param string $title
@@ -42,7 +42,7 @@ class Movie
     /**
      * @param int $duration
      */
-    public function setDuration($duration): void
+    public function setDuration(int $duration): void
     {
         $this->_duration = $duration;
     }
@@ -82,17 +82,17 @@ class Movie
     /**
      * @return string
      */
-    public function getTrailer(): string
+    public function getTrailerId(): string
     {
-        return $this->_trailer;
+        return $this->_trailerId;
     }
 
     /**
      * @param string $trailer
      */
-    public function setTrailer(string $trailer): void
+    public function setTrailerId(string $trailer): void
     {
-        $this->_trailer = $trailer;
+        $this->_trailerId = $trailer;
     }
 
     /**
@@ -103,7 +103,7 @@ class Movie
         return [
             'title' => $this->_title,
             'poster' => $this->_poster,
-            'trailer' => $this->_trailer,
+            'trailer' => $this->_trailerId,
             'duration' => $this->_duration,
             'summary' => $this->_summary,
         ];

@@ -136,6 +136,7 @@ class StoreMovieHandlerTest extends \Tests\TestCase
             'summary' => 'Esta película trata de una prueba en phpunit',
             'poster' => 'http://url/to/the/poster',
             'duration' => 90,
+            'trailer' => 'randomYoutubeId',
 
         ];
 
@@ -152,6 +153,7 @@ class StoreMovieHandlerTest extends \Tests\TestCase
             'summary' => '',
             'poster' => '',
             'duration' => 'blabla',
+            'trailer' => '',
 
         ];
 

@@ -49,7 +49,7 @@ class StoreMovieHandler
         $movie->setSummary($command->getSummary());
         $movie->setPoster($command->getPoster());
         $movie->setDuration($command->getDuration());
-        $movie->setTrailer($command->getTrailer());
+        $movie->setTrailerId($command->getTrailer());
 
         return $movie;
     }

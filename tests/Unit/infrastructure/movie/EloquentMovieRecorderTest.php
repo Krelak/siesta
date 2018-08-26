@@ -5,8 +5,8 @@ namespace Tests\Unit\infrastructure\movie;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use siesta\domain\exception\RecordException;
-use siesta\domain\movie\Movie;
-use siesta\infrastructure\movie\EloquentMovieRecorder;
+use siesta\infrastructure\movie\persistence\EloquentMovieRecorder;
+use Tests\Helpers\DomainGenerator;
 
 /**
  * Class EloquentMovieRecorderTest
@@ -25,7 +25,7 @@ class EloquentMovieRecorderTest extends \Tests\TestCase
     public function testWhenSomethingIsInsertedGivesOkOrThrowsException()
     {
         try {
-            $movie = $this->_getValidMovie();
+            $movie = DomainGenerator::givesMovie();
             $this->_recorder->store($movie);
         } catch (RecordException $e) {
             $this->fail('Shouldn\'t throw exception');
@@ -33,7 +33,7 @@ class EloquentMovieRecorderTest extends \Tests\TestCase
 
 
         try {
-            $movie = $this->_getValidMovie();
+            $movie = DomainGenerator::givesMovie();
             $this->_recorder->store($movie);
             $this->fail('Should throw RecordException');
         } catch (RecordException $e) {
@@ -41,20 +41,6 @@ class EloquentMovieRecorderTest extends \Tests\TestCase
         }
     }
 
-    /**
-     * @return Movie
-     */
-    private function _getValidMovie(): Movie
-    {
-        $movie = new Movie();
-        $movie->setDuration(90);
-        $movie->setPoster('poster');
-        $movie->setSummary('summary');
-        $movie->setTitle('testMovie');
-        $movie->setTrailer('coolTrailer');
-
-        return $movie;
-    }
 
     protected function setUp()
     {

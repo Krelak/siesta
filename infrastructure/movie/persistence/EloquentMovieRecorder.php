@@ -1,5 +1,5 @@
 <?php
-namespace siesta\infrastructure\movie;
+namespace siesta\infrastructure\movie\persistence;
 
 use Illuminate\Database\Eloquent\Model;
 use siesta\domain\exception\RecordException;
@@ -51,7 +51,7 @@ class EloquentMovieRecorder extends Model implements MovieRecorder
         return array_combine($this->fillable, [
             $movie->getTitle(),
             $movie->getPoster(),
-            $movie->getTrailer(),
+            $movie->getTrailerId(),
             $movie->getDuration(),
             $movie->getSummary()
 
