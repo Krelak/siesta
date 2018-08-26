@@ -11,7 +11,7 @@ $app->bind(\siesta\domain\extraction\MovieExtractor::class, \App\UseCases\Extrac
 /***************************************
  * HELPERS
  **************************************/
-$app->bind(\App\UseCases\ExtractMovieList\HtmlParser::class, \App\UseCases\ExtractMovieList\SimpleDomHtmlParser::class);
+$app->bind(\siesta\infrastructure\movie\http\HtmlParser::class, \siesta\infrastructure\movie\http\SimpleDomHtmlParser::class);
 $app->bind(\App\Helpers\FinderVideoService::class, function ($app) {
     $googleClient = new Google_Client();
     $googleClient->setApplicationName(env('GOOGLE_APP_NAME'));
@@ -24,4 +24,5 @@ $app->bind(\App\Helpers\FinderVideoService::class, function ($app) {
 /***************************************
  * INFRASTRUCTURE
  **************************************/
-$app->bind(\siesta\domain\movie\MovieRecorder::class, \siesta\infrastructure\movie\EloquentMovieRecorder::class);
+$app->bind(\siesta\domain\movie\MovieRecorder::class, \siesta\infrastructure\movie\persistence\EloquentMovieRecorder::class);
+$app->bind(\siesta\domain\movie\MovieProvider::class, \siesta\infrastructure\movie\persistence\EloquentMovieProvider::class);
