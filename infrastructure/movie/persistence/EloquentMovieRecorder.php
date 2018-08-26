@@ -3,8 +3,8 @@ namespace siesta\infrastructure\movie\persistence;
 
 use Illuminate\Database\Eloquent\Model;
 use siesta\domain\exception\MovieRecordException;
+use siesta\domain\movie\infrastructure\MovieRecorder;
 use siesta\domain\movie\Movie;
-use siesta\domain\movie\MovieRecorder;
 
 /**
  * Class EloquentMovieRecorder

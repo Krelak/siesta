@@ -1,8 +1,9 @@
 <?php
-namespace siesta\domain\movie;
+namespace siesta\domain\movie\infrastructure;
 
 
 use siesta\domain\exception\MovieNotFoundException;
+use siesta\domain\movie\Movie;
 
 /**
  * Interface MovieProvider

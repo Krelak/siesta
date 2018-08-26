@@ -2,8 +2,8 @@
 namespace siesta\application\movie\usecases;
 
 use siesta\domain\exception\MovieNotFoundException;
+use siesta\domain\movie\infrastructure\MovieProvider;
 use siesta\domain\movie\Movie;
-use siesta\domain\movie\MovieProvider;
 
 class ObtainMovieHandler
 {

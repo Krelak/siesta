@@ -4,8 +4,8 @@ namespace siesta\infrastructure\movie\persistence;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use siesta\domain\exception\MovieNotFoundException;
+use siesta\domain\movie\infrastructure\MovieProvider;
 use siesta\domain\movie\Movie;
-use siesta\domain\movie\MovieProvider;
 
 class EloquentMovieProvider extends Model implements MovieProvider
 {

@@ -24,5 +24,5 @@ $app->bind(\App\Helpers\FinderVideoService::class, function ($app) {
 /***************************************
  * INFRASTRUCTURE
  **************************************/
-$app->bind(\siesta\domain\movie\MovieRecorder::class, \siesta\infrastructure\movie\persistence\EloquentMovieRecorder::class);
-$app->bind(\siesta\domain\movie\MovieProvider::class, \siesta\infrastructure\movie\persistence\EloquentMovieProvider::class);
+$app->bind(\siesta\domain\movie\infrastructure\MovieRecorder::class, \siesta\infrastructure\movie\persistence\EloquentMovieRecorder::class);
+$app->bind(\siesta\domain\movie\infrastructure\MovieProvider::class, \siesta\infrastructure\movie\persistence\EloquentMovieProvider::class);

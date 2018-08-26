@@ -3,8 +3,8 @@
 
 use siesta\application\movie\usecases\StoreMovieCommand;
 use siesta\application\movie\usecases\StoreMovieHandler;
+use siesta\domain\movie\infrastructure\MovieRecorder;
 use siesta\domain\movie\Movie;
-use siesta\domain\movie\MovieRecorder;
 
 /**
  * Class StoreMovieUseCaseTest

@@ -3,8 +3,8 @@ namespace siesta\application\movie\usecases;
 
 use siesta\application\exception\WrongInputException;
 use siesta\domain\exception\MovieRecordException;
+use siesta\domain\movie\infrastructure\MovieRecorder;
 use siesta\domain\movie\Movie;
-use siesta\domain\movie\MovieRecorder;
 
 /**
  * Class StoreMovieUseCase

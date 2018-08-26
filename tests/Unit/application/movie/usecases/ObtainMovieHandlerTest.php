@@ -4,7 +4,7 @@ namespace Tests\Unit\application\movie\usecases;
 
 use siesta\application\movie\usecases\ObtainMovieCommand;
 use siesta\application\movie\usecases\ObtainMovieHandler;
-use siesta\domain\movie\MovieProvider;
+use siesta\domain\movie\infrastructure\MovieProvider;
 use Tests\Helpers\DomainGenerator;
 
 class ObtainMovieHandlerTest extends \Tests\TestCase
