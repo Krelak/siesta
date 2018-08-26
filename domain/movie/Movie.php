@@ -42,7 +42,7 @@ class Movie
     /**
      * @param int $duration
      */
-    public function setDuration(int $duration): void
+    public function setDuration($duration): void
     {
         $this->_duration = $duration;
     }
@@ -90,7 +90,7 @@ class Movie
     /**
      * @param string $trailer
      */
-    public function setTrailerId(string $trailer): void
+    public function setTrailerId($trailer): void
     {
         $this->_trailerId = $trailer;
     }

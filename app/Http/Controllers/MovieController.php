@@ -35,7 +35,6 @@ class MovieController extends SiestaController
     public function show($id)
     {
         try {
-
             $command = new ObtainMovieCommand();
             $command->setId($id);
 
@@ -43,7 +42,6 @@ class MovieController extends SiestaController
             $handler = app()->make(ObtainMovieHandler::class);
             $movie = $handler->execute($command);
         } catch (MovieNotFoundException $e) {
-            // TODO 404
             return view('404');
         }
 

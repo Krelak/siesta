@@ -44,7 +44,7 @@ class EloquentMovieProvider extends Model implements MovieProvider
 
             return $this->_getMovieFromMapping($mapping->getAttributes());
         } catch (ModelNotFoundException $e) {
-            throw  new MovieNotFoundException($e);
+            throw new MovieNotFoundException($e);
         }
     }
 
