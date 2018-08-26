@@ -2,7 +2,7 @@
 namespace siesta\infrastructure\movie\persistence;
 
 use Illuminate\Database\Eloquent\Model;
-use siesta\domain\exception\RecordException;
+use siesta\domain\exception\MovieRecordException;
 use siesta\domain\movie\Movie;
 use siesta\domain\movie\MovieRecorder;
 
@@ -28,7 +28,7 @@ class EloquentMovieRecorder extends Model implements MovieRecorder
 
     /**
      * @param Movie $movie
-     * @throws RecordException
+     * @throws MovieRecordException
      */
     public function store(Movie $movie): void
     {
@@ -38,7 +38,7 @@ class EloquentMovieRecorder extends Model implements MovieRecorder
             /** @noinspection PhpUndefinedMethodInspection */
             self::create($fillableFields);
         } catch (\Exception $e) {
-            throw new RecordException($e->getMessage(), 0, $e);
+            throw new MovieRecordException($e);
         }
     }
 

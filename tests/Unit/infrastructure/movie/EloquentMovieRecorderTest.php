@@ -4,7 +4,7 @@ namespace Tests\Unit\infrastructure\movie;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use siesta\domain\exception\RecordException;
+use siesta\domain\exception\MovieRecordException;
 use siesta\infrastructure\movie\persistence\EloquentMovieRecorder;
 use Tests\Helpers\DomainGenerator;
 
@@ -27,7 +27,7 @@ class EloquentMovieRecorderTest extends \Tests\TestCase
         try {
             $movie = DomainGenerator::givesMovie();
             $this->_recorder->store($movie);
-        } catch (RecordException $e) {
+        } catch (MovieRecordException $e) {
             $this->fail('Shouldn\'t throw exception');
         }
 
@@ -35,8 +35,8 @@ class EloquentMovieRecorderTest extends \Tests\TestCase
         try {
             $movie = DomainGenerator::givesMovie();
             $this->_recorder->store($movie);
-            $this->fail('Should throw RecordException');
-        } catch (RecordException $e) {
+            $this->fail('Should throw MovieRecordException');
+        } catch (MovieRecordException $e) {
             $this->assertTrue(true);
         }
     }

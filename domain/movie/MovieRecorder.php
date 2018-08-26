@@ -2,7 +2,7 @@
 namespace siesta\domain\movie;
 
 
-use siesta\domain\exception\RecordException;
+use siesta\domain\exception\MovieRecordException;
 
 /**
  * Interface MovieRecorder
@@ -12,7 +12,7 @@ interface MovieRecorder
 {
     /**
      * @param Movie $movie
-     * @throws RecordException
+     * @throws MovieRecordException
      */
     public function store(Movie $movie);
 }

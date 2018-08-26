@@ -1,12 +1,13 @@
 <?php
 namespace siesta\domain\exception;
 
-class MovieNotFoundException extends DataNotFoundException
+/**
+ * Class MovieRecordException
+ * @package siesta\domain\exception
+ */
+class MovieRecordException extends RecordException
 {
-    /**
-     * @return string
-     */
-    private const TYPE = 'Movie';
+    private const TYPE = 'movie';
 
     /**
      * @return string
