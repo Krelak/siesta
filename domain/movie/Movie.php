@@ -14,6 +14,8 @@ class Movie
     private $_duration;
     /** @var string */
     private $_trailerId;
+    /** @var int */
+    private $_id;
 
     /**
      * @param string $title
@@ -107,5 +109,21 @@ class Movie
             'duration' => $this->_duration,
             'summary' => $this->_summary,
         ];
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->_id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->_id = $id;
     }
 }

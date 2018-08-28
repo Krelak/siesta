@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\infrastructure\movie;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use siesta\domain\exception\MovieRecordException;
 use siesta\infrastructure\movie\persistence\EloquentMovieRecorder;
@@ -19,14 +18,13 @@ class EloquentMovieRecorderTest extends \Tests\TestCase
 
     /** @var EloquentMovieRecorder */
     private $_recorder;
-    /** @var  Model|\PHPUnit\Framework\MockObject\MockObject */
-    private $_eloquentModel;
 
     public function testWhenSomethingIsInsertedGivesOkOrThrowsException()
     {
         try {
             $movie = DomainGenerator::givesMovie();
             $this->_recorder->store($movie);
+            $this->assertTrue(true);
         } catch (MovieRecordException $e) {
             $this->fail('Shouldn\'t throw exception');
         }

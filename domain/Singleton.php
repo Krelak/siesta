@@ -14,15 +14,17 @@ abstract class Singleton
     }
 
     /**
-     * @return Singleton
+     * @param string $className
+     * @return mixed
      */
     public static function get()
     {
-        if (empty(self::$_instance)) {
-            $className = static::class;
-            self::$_instance = new $className;
+        $className = static::class;
+
+        if (empty(self::$_instance[$className])) {
+            self::$_instance[$className] = new $className;
         }
 
-        return self::$_instance;
+        return self::$_instance[$className];
     }
 }
