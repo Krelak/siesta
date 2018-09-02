@@ -16,6 +16,7 @@ use siesta\infrastructure\movie\persistence\EloquentMovieRecorder;
 
 $factory->define(EloquentMovieRecorder::class, function (Faker $faker) {
     return [
+        'id' => 1,
         'title' => $faker->title,
         'poster' => $faker->imageUrl(),
         'duration' => $faker->numberBetween(10, 240),

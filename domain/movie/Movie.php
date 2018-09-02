@@ -18,6 +18,18 @@ class Movie
     private $_id;
 
     /**
+     * @param int $movieId
+     * @return Movie
+     */
+    public static function buildFromId($movieId)
+    {
+        $movie = new self();
+        $movie->setId($movieId);
+
+        return $movie;
+    }
+
+    /**
      * @param string $title
      */
     public function setTitle($title): void

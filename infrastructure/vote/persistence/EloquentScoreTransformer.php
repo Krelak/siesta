@@ -43,4 +43,18 @@ class EloquentScoreTransformer implements ScoreTransformer
         return array_key_exists($className, self::TRANSFORMATIONS);
     }
 
+    /**
+     * @param int $score
+     * @return Score
+     * @throws VoteInvalidTypeException
+     */
+    public function fromPersistenceToDomain($score): Score
+    {
+        $className = array_search($score, self::TRANSFORMATIONS, true);
+        if (false === $className) {
+            throw new VoteInvalidTypeException($score);
+        }
+
+        return $className::get();
+    }
 }

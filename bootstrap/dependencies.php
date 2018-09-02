@@ -27,3 +27,5 @@ $app->bind(\App\Helpers\FinderVideoService::class, function ($app) {
 $app->bind(\siesta\domain\movie\infrastructure\MovieRecorder::class, \siesta\infrastructure\movie\persistence\EloquentMovieRecorder::class);
 $app->bind(\siesta\domain\movie\infrastructure\MovieProvider::class, \siesta\infrastructure\movie\persistence\EloquentMovieProvider::class);
 $app->bind(\siesta\infrastructure\vote\persistence\ScoreTransformer::class, \siesta\infrastructure\vote\persistence\EloquentScoreTransformer::class);
+$app->bind(\siesta\domain\vote\infrastructure\VoteRecorder::class, \siesta\infrastructure\vote\persistence\EloquentVoteRecorder::class);
+$app->bind(\siesta\domain\vote\infrastructure\VoteProvider::class, \siesta\infrastructure\vote\persistence\EloquentVoteProvider::class);

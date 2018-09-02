@@ -7,7 +7,7 @@ use siesta\domain\vote\IndividualVote;
 use siesta\domain\vote\StrongScore;
 use siesta\domain\vote\WeakScore;
 use siesta\infrastructure\vote\persistence\EloquentScoreTransformer;
-use siesta\infrastructure\vote\persistence\EloquentVoteRecorderTransformer;
+use siesta\infrastructure\vote\persistence\EloquentVoteSerializedTransformer;
 use Tests\Helpers\DomainGenerator;
 
 /**
@@ -19,7 +19,7 @@ class EloquentVoteRecorderTransformerTest extends TestCase
 
     /** @var EloquentScoreTransformer|\PHPUnit\Framework\MockObject\MockObject */
     private $_mockScoreTransformer;
-    /** @var EloquentVoteRecorderTransformer */
+    /** @var EloquentVoteSerializedTransformer */
     private $_transformer;
 
     public function testScoreTransformerIsCalled()
@@ -81,7 +81,7 @@ class EloquentVoteRecorderTransformerTest extends TestCase
         $this->_mockScoreTransformer = $scoreTransformer = $this->getMockBuilder(EloquentScoreTransformer::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $this->_transformer = new EloquentVoteRecorderTransformer($scoreTransformer);
+        $this->_transformer = new EloquentVoteSerializedTransformer($scoreTransformer);
     }
 
 }

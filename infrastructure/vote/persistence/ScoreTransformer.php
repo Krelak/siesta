@@ -12,4 +12,10 @@ interface ScoreTransformer
      * @throws VoteInvalidTypeException
      */
     public function fromDomainToPersistence(Score $score): int;
+
+    /**
+     * @param int $score
+     * @return Score
+     */
+    public function fromPersistenceToDomain($score): Score;
 }

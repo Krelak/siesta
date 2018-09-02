@@ -27,7 +27,7 @@ class EloquentVoteRecorder extends Model implements VoteRecorder
         $this->fillable = self::FILLABLE_FIELDS;
         $this->table = self::TABLE_NAME;
         $scoreTransformer = app()->make(ScoreTransformer::class);
-        $this->_transformer = new EloquentVoteRecorderTransformer($scoreTransformer);
+        $this->_transformer = new EloquentVoteSerializedTransformer($scoreTransformer);
         parent::__construct($attributes);
     }
 
