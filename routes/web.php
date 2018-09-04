@@ -19,3 +19,5 @@ Route::post('/movie-create', 'MovieController@create');
 
 Route::get('/movie/{id}', 'MovieController@show');
 
+Route::post('/movie/{id}', 'MovieController@vote');
+

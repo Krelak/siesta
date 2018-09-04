@@ -11,7 +11,7 @@ class Vote
     private $_movie;
 
     /**
-     * @return Score[]
+     * @return IndividualVote[]
      */
     public function getIndividualVoteList(): array
     {

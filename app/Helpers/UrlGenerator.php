@@ -9,7 +9,6 @@ class UrlGenerator
      */
     public static function getYoutubeUrl(string $videoId): string
     {
-
         return "http://www.youtube.com/watch?v=$videoId";
     }
 }

@@ -2,6 +2,9 @@
 namespace App\Presentation;
 
 use siesta\domain\movie\Movie;
+use siesta\domain\vote\Score;
+use siesta\domain\vote\StrongScore;
+use siesta\domain\vote\WeakScore;
 
 class MovieDecorator
 {
@@ -57,5 +60,40 @@ class MovieDecorator
     public function getSummary(): string
     {
         return preg_replace('/ +/', ' ', $this->_movie->getSummary());
+    }
+
+    /**
+     * @param int $id
+     * @return string
+     */
+    public function isWeakScore($id): string
+    {
+        return $this->_isScore($id, WeakScore::get());
+    }
+
+    /**
+     * @param int $id
+     * @return string
+     */
+    public function isStrongScore($id): string
+    {
+        return $this->_isScore($id, StrongScore::get());
+    }
+
+    /**
+     * @param int $id
+     * @param Score $score
+     * @return string
+     */
+    private function _isScore($id, Score $score): string
+    {
+        foreach ($this->_movie->getIndividualVoteList() as $individualVote) {
+            if ($individualVote->getUserId() === $id &&
+                $individualVote->getScore() === $score) {
+                return 'checked';
+            }
+        }
+
+        return '';
     }
 }

@@ -1,6 +1,9 @@
 <?php
 namespace siesta\domain\movie;
 
+use siesta\domain\vote\IndividualVote;
+use siesta\domain\vote\Vote;
+
 class Movie
 {
 
@@ -16,6 +19,8 @@ class Movie
     private $_trailerId;
     /** @var int */
     private $_id;
+    /** @var Vote */
+    private $_vote;
 
     /**
      * @param int $movieId
@@ -137,5 +142,33 @@ class Movie
     public function setId(int $id): void
     {
         $this->_id = $id;
+    }
+
+    /**
+     * @param Vote $vote
+     */
+    public function setVote(Vote $vote): void
+    {
+        $this->_vote = $vote;
+    }
+
+    /**
+     * @return Vote
+     */
+    public function getVote(): Vote
+    {
+        return $this->_vote;
+    }
+
+    /**
+     * @return IndividualVote[]
+     */
+    public function getIndividualVoteList()
+    {
+        if ($this->_vote) {
+            return $this->_vote->getIndividualVoteList();
+        }
+
+        return [];
     }
 }
