@@ -43,7 +43,7 @@ class SitgesWeb2018MovieExtractor implements MovieExtractor
             $movie->setTitle($title);
             $movie->setTrailerId($this->_getTrailer($title));
             $movie->setDuration($this->_getDuration($link));
-            $movie->setPoster($this->_getPosterFromMovieElement($domMovie));
+            $movie->setPoster($this->_getPosterFromMovieElement($domMovie, $title));
             $movie->setSummary($this->_getSummary($link));
             $movieList[] = $movie;
         }
@@ -84,10 +84,15 @@ class SitgesWeb2018MovieExtractor implements MovieExtractor
 
     /**
      * @param \DiDom\Element $movie
+     * @param string $title
      * @return string
      */
-    private function _getPosterFromMovieElement(\DiDom\Element $movie) //TODO: sacar a clase dominio
+    private function _getPosterFromMovieElement(\DiDom\Element $movie, $title) //TODO: sacar a clase dominio
     {
+        $externalPoster = $this->_tryWithCineMaterial($title);
+        if (!empty($externalPoster)) {
+            return $externalPoster;
+        }
         if (preg_match('/background-image: url\(\'(.*)\'\)/', $movie->html(), $results)) {
             return $results[1];
         }
@@ -104,5 +109,23 @@ class SitgesWeb2018MovieExtractor implements MovieExtractor
         $rawText = current($rawTextList);
 
         return trim($rawText->text());
+    }
+
+    /**
+     * @param string $title
+     * @return string
+     */
+    private function _tryWithCineMaterial($title)
+    {
+        $cineMaterialSerch = file_get_contents('https://www.cinematerial.com/search?q=' . urlencode($title));
+        if (preg_match('#<img\ssrc="(https://cdn.cinematerial.com/p/30x/[^"]*)"#', $cineMaterialSerch, $matches)) {
+            $image = str_replace('30x', '500x', $matches[1]);
+            preg_match('/style="color:\s#8C8C8C;">([^<]*)<\/span>/', $cineMaterialSerch, $yearMatches);
+            if (\in_array(trim($yearMatches[1]), ["2017", "2018"], true)) {
+                return $image;
+            }
+        }
+
+        return '';
     }
 }

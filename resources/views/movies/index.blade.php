@@ -16,15 +16,18 @@
         </div>
         <div class="row margin-top-30">
             <div class="col-md-6">
-                <img height="333px" width="500px" src={!! html_entity_decode($movie->getPoster()) !!} />
+                <img height={{$movie->getPosterHeight()}}"700px" width={{$movie->getPosterWidth()}}"500px" src={!! html_entity_decode($movie->getPoster()) !!} />
             </div>
+            <br/>
             <div class="col-md-6">
                 {{ $movie->getSummary()}}
+                <div>
+                    <iframe width="560" height="315" src="{{$movie->getTrailer()}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
         <div class="row margin-top-20">
             <div class="col-md-5">
-                <iframe width="560" height="315" src="{{$movie->getTrailer()}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-5">

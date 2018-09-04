@@ -96,4 +96,36 @@ class MovieDecorator
 
         return '';
     }
+
+    /**
+     * @return bool
+     */
+    private function _isSitgesImage()
+    {
+        return false !== strpos($this->_movie->getPoster(), 'sitgesfilmfestival.com');
+    }
+
+    /**
+     * @return string
+     */
+    public function getPosterHeight()
+    {
+        if ($this->_isSitgesImage()) {
+            return '333px';
+        }
+
+        return '700px';
+    }
+
+    /**
+     * @return string
+     */
+    public function getPosterWidth()
+    {
+        if ($this->_isSitgesImage()) {
+            return '500px';
+        }
+
+        return '500px';
+    }
 }
