@@ -19,6 +19,14 @@ class SitgesWeb2018MovieExtractor implements MovieExtractor
     private $_htmlParser;
     /** @var FinderVideoService */
     private $_finderVideoService;
+    private const NON_VOTABLE_MOVIES = [
+        'Brigadoon',
+        'Sessió Especial Curts',
+        'Anima\'t Cortos',
+        'Oficial Fantàstic Competició Curts',
+        'Serial Sitges',
+        'Panorama - Sitges Documenta',
+    ];
 
     /**
      * SitgesWeb2018MovieExtractor constructor.
@@ -145,7 +153,7 @@ class SitgesWeb2018MovieExtractor implements MovieExtractor
      */
     private function _checkForVotableMovie(\DiDom\Element $movie): void
     {
-        if (preg_match('/<p>Brigadoon<\/p>/', $movie->html())) {
+        if (preg_match('/<p>' . implode('|', self::NON_VOTABLE_MOVIES) . '<\/p>/', $movie->html())) {
             throw new MovieNotForVoteException();
         }
     }
