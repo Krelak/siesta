@@ -25,7 +25,9 @@ class CreateFilmFestivalTable extends Migration
 
             Schema::table('movie', function (Blueprint $table) {
                 $table->integer('film_festival_id');
-                $table->foreign('film_festival_id')->references('id')
+                /** @noinspection PhpUndefinedMethodInspection */
+                $table->foreign('film_festival_id')
+                    ->references('id')
                     ->on('film_festival');
             });
             \Illuminate\Support\Facades\DB::commit();
