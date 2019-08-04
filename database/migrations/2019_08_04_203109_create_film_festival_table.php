@@ -1,0 +1,50 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateFilmFestivalTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        try {
+
+            \Illuminate\Support\Facades\DB::beginTransaction();
+            Schema::create('film_festival', function (Blueprint $table) {
+                $table->increments('id');
+                $table->text('name');
+                $table->integer('edition');
+                $table->timestamps();
+            });
+
+            Schema::table('movie', function (Blueprint $table) {
+                $table->integer('film_festival_id');
+                $table->foreign('film_festival_id')->references('id')
+                    ->on('film_festival');
+            });
+            \Illuminate\Support\Facades\DB::commit();
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\DB::rollBack();
+        }
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('film_festival');
+        Schema::table('movie', function (Blueprint $table) {
+            $table->dropForeign('film_festival_id');
+            $table->dropColumn('film_festival_id');
+        });
+    }
+}
