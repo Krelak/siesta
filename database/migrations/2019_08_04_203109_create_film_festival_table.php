@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateFilmFestivalTable extends Migration
@@ -15,7 +16,7 @@ class CreateFilmFestivalTable extends Migration
     {
         try {
 
-            \Illuminate\Support\Facades\DB::beginTransaction();
+            DB::beginTransaction();
             Schema::create('film_festival', function (Blueprint $table) {
                 $table->increments('id');
                 $table->text('name');
@@ -30,9 +31,9 @@ class CreateFilmFestivalTable extends Migration
                     ->references('id')
                     ->on('film_festival');
             });
-            \Illuminate\Support\Facades\DB::commit();
+            DB::commit();
         } catch (\Exception $e) {
-            \Illuminate\Support\Facades\DB::rollBack();
+            DB::rollBack();
         }
     }
 
