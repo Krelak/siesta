@@ -48,6 +48,25 @@ class EloquentVoteProviderTest extends \Tests\TestCase
         }
     }
 
+    public function testWhenAskingForVotesGivesVoteListOrThrowException()
+    {
+        /** @var Model $vote */
+        $this->_factory->create();
+        $this->_factory->create();
+        $this->_factory->create();
+        $this->_factory->create();
+        $this->_factory->create();
+
+        try {
+            $voteList = $this->_provider->getVotesOrderedByScore();
+
+            $expected = [];
+            $this->assertEquals($expected, $voteList);
+        } catch (VoteNotFoundException $e) {
+            $this->fail('Shouldn\'t throw VoteNotFoundException');
+        }
+    }
+
     protected function setUp()
     {
         parent::setUp();

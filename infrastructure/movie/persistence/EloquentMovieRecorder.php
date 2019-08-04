@@ -2,6 +2,7 @@
 namespace siesta\infrastructure\movie\persistence;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use siesta\domain\exception\MovieRecordException;
 use siesta\domain\movie\infrastructure\MovieRecorder;
 use siesta\domain\movie\Movie;
@@ -13,7 +14,8 @@ use siesta\domain\movie\Movie;
 class EloquentMovieRecorder extends Model implements MovieRecorder
 {
     private const TABLE_NAME = 'movie';
-    private const FILLABLE_FIELDS = ['title', 'poster', 'trailer_id', 'duration', 'summary'];
+    private const FILLABLE_FIELDS = [self::TITLE, 'poster', 'trailer_id', 'duration', 'summary'];
+    private const TITLE = 'title';
 
     /**
      * EloquentMovieRecorder constructor.
@@ -33,10 +35,11 @@ class EloquentMovieRecorder extends Model implements MovieRecorder
     public function store(Movie $movie): void
     {
         try {
-            $fillableFields = $this->_getFillableFields($movie);
-
             /** @noinspection PhpUndefinedMethodInspection */
-            self::create($fillableFields);
+            self::where(self::TITLE, '=', $movie->getTitle())->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            /** @noinspection PhpUndefinedMethodInspection */
+            self::create($this->_getFillableFields($movie));
         } catch (\Exception $e) {
             throw new MovieRecordException($e);
         }

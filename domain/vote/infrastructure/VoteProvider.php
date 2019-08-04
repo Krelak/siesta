@@ -12,4 +12,9 @@ interface VoteProvider
      * @throws VoteNotFoundException
      */
     public function getVotesByMovieId(int $id): Vote;
+
+    /**
+     * @return Vote[]
+     */
+    public function getVotesOrderedByScore(): array;
 }

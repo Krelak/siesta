@@ -30,19 +30,27 @@ class YoutubeFinderVideoService implements FinderVideoService
      */
     public function findVideoByText(string $text): string
     {
-        $firstVideo = $this->_getFirstVideoByText($text);
+        try {
+            $firstVideo = $this->_getFirstVideoByText($text);
 
-        return $firstVideo->getId()->getVideoId();
+            return $firstVideo->getId()->getVideoId();
+        } catch (\Exception $e) {
+            return '';
+        }
     }
 
     /**
      * @param string $text
      * @return Google_Service_YouTube_SearchResult
+     * @throws \Exception
      */
     private function _getFirstVideoByText(string $text): Google_Service_YouTube_SearchResult
     {
         $videos = $this->_service->search->listSearch(self::PART_TO_FIND, [self::QUERY_PARAM => $text, self::TYPE => self::ALLOWED_TYPE]);
 
+        if (!$videos->getItems()) {
+            throw new \Exception('No video found');
+        }
         return current($videos->getItems());
     }
 }

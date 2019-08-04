@@ -63,7 +63,11 @@ class Movie
      */
     public function setDuration($duration): void
     {
-        $this->_duration = $duration;
+        if (!\is_int($duration)) {
+            $this->_duration = 0;
+        } else {
+            $this->_duration = $duration;
+        }
     }
 
     /**

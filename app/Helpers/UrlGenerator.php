@@ -11,4 +11,13 @@ class UrlGenerator
     {
         return "http://www.youtube.com/watch?v=$videoId";
     }
+
+    /**
+     * @param int $id
+     * @return string
+     */
+    public static function getShowMovie($id): string
+    {
+        return '/siesta/public/movie/' . $id;
+    }
 }

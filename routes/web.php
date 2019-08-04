@@ -12,8 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
+
+Route::get('/home', function () {
+    echo "bieeeen";
+});
+
+Route::get('/list', 'VoteController@listVotes');
 
 Route::post('/movie-create', 'MovieController@create');
 

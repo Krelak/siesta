@@ -9,6 +9,8 @@ class Vote
     private $_individualVoteList;
     /** @var Movie */
     private $_movie;
+    /** @var int */
+    private $_totalScore;
 
     /**
      * @return IndividualVote[]
@@ -41,5 +43,21 @@ class Vote
     public function setIndividualVoteList(array $scoreList): void
     {
         $this->_individualVoteList = $scoreList;
+    }
+
+    /**
+     * @param int $value
+     */
+    public function setScore(int $value)
+    {
+        $this->_totalScore = $value;
+    }
+
+    /**
+     * @return int
+     */
+    public function getScore(): int
+    {
+        return $this->_totalScore;
     }
 }

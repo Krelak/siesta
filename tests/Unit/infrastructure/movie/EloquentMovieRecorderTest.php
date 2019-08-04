@@ -33,9 +33,9 @@ class EloquentMovieRecorderTest extends \Tests\TestCase
         try {
             $movie = DomainGenerator::givesMovie();
             $this->_recorder->store($movie);
-            $this->fail('Should throw MovieRecordException');
-        } catch (MovieRecordException $e) {
             $this->assertTrue(true);
+        } catch (MovieRecordException $e) {
+            $this->fail('Shouldn\'t throw MovieRecordException');
         }
     }
 

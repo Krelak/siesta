@@ -24,8 +24,15 @@ class SitgesWeb2018MovieExtractor implements MovieExtractor
         'Sessió Especial Curts',
         'Anima\'t Cortos',
         'Oficial Fantàstic Competició Curts',
+        'Official Fantàstic Competition Shorts',
+        'Noves Visions - Small format',
         'Serial Sitges',
         'Panorama - Sitges Documenta',
+        'Noves Visions - Pequeño formato',
+        'Panorama - Sitges Documenta',
+        'Noves Visions - Sitges Documenta',
+        'Sitges Clàssics',
+        'Anima\'t Cortos'
     ];
 
     /**
@@ -83,19 +90,25 @@ class SitgesWeb2018MovieExtractor implements MovieExtractor
      */
     private function _getTrailer($title): string
     {
-        return $this->_finderVideoService->findVideoByText("$title official trailer");
+        return $this->_finderVideoService->findVideoByText("\"$title\" official trailer");
     }
 
     /**
      * @param string $link
      * @return int
+     * @throws MovieNotForVoteException
      */
     private function _getDuration(string $link): int
     {
         $rawTextList = $this->_htmlParser->getElementsByClass($link, 'fa-hourglass-start');
         $rawText = current($rawTextList);
 
-        return trim($rawText->nextSibling()->text());
+        $duration = intval(trim($rawText->nextSibling()->text()));
+        if ($duration != 0 && $duration < 60) {
+            throw new MovieNotForVoteException();
+        }
+
+        return $duration;
     }
 
     /**
@@ -125,6 +138,9 @@ class SitgesWeb2018MovieExtractor implements MovieExtractor
     {
         $rawTextList = $this->_htmlParser->getElementsByClass($link, 'section_sinopsi');
         $rawText = current($rawTextList);
+        if (!$rawText) {
+            return '';
+        }
 
         return trim(str_replace('Sinopsis', '', $rawText->text()));
     }
